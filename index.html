@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UCAT Score Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>UCAT Score Calculator</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Section</th>
+                <th>Raw Marks</th>
+                <th>Total Marks</th>
+                <th>Scaled Score</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>VR (Verbal Reasoning)</td>
+                <td><input type="number" id="vrRaw" oninput="calculateScore('VR')"></td>
+                <td><input type="number" id="vrTotal" oninput="calculateScore('VR')"></td>
+                <td id="vrScore">-</td>
+            </tr>
+            <tr>
+                <td>AR (Abstract Reasoning)</td>
+                <td><input type="number" id="arRaw" oninput="calculateScore('AR')"></td>
+                <td><input type="number" id="arTotal" oninput="calculateScore('AR')"></td>
+                <td id="arScore">-</td>
+            </tr>
+            <tr>
+                <td>QR (Quantitative Reasoning)</td>
+                <td><input type="number" id="qrRaw" oninput="calculateScore('QR')"></td>
+                <td><input type="number" id="qrTotal" oninput="calculateScore('QR')"></td>
+                <td id="qrScore">-</td>
+            </tr>
+            <tr>
+                <td>DM (Decision Making)</td>
+                <td><input type="number" id="dmRaw" oninput="calculateScore('DM')"></td>
+                <td><input type="number" id="dmTotal" oninput="calculateScore('DM')"></td>
+                <td id="dmScore">-</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3">Total Scaled Score out of 3600:</td>
+                <td id="totalScore">-</td>
+            </tr>
+        </tfoot>
+    </table>
+    <script src="script.js"></script>
+</body>
+</html>
