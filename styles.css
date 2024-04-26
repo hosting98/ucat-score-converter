@@ -19,3 +19,34 @@ th, td {
 th {
     background-color: #f2f2f2;
 }
+
+#totalScore {
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+#centredTable {
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%; 
+}
+
+#title {
+    text-align: center;
+}
+
+#saveButton, #noteInput {
+    display: block;
+    margin: 0 auto;
+    font-family: 'Poppins', sans-serif;
+}
+
+#savedScores div {
+    margin-bottom: 20px;
+    border: 1px solid #000;
+    padding: 10px;
+}
+
+#savedScores button {
+    margin-left: 10px;
+}
