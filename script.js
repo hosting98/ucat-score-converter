@@ -43,3 +43,72 @@ function calculateTotalScore() {
     });
     document.getElementById('totalScore').textContent = total;
 }
+let savedScores = [];
+
+document.getElementById('saveButton').addEventListener('click', function() {
+    const sections = ['VR', 'AR', 'QR', 'DM'];
+    let scores = {};
+    sections.forEach(section => {
+        const score = document.getElementById(`${section.toLowerCase()}Score`).textContent;
+        if (score !== '-') {
+            scores[section] = parseInt(score);
+        }
+    });
+    scores['total'] = document.getElementById('totalScore').textContent;
+    scores['dateTime'] = new Date().toLocaleString();
+    scores['note'] = document.getElementById('noteInput').value; // save lol
+    savedScores.push(scores);
+
+    localStorage.setItem('savedScores', JSON.stringify(savedScores));
+
+    displaySavedScores();
+});
+
+function displaySavedScores() {
+    const savedScoresDiv = document.getElementById('savedScores');
+    savedScoresDiv.innerHTML = '';
+    savedScores.forEach((scores, index) => {
+        const scoresDiv = document.createElement('div');
+        scoresDiv.textContent = `${scores['note']} (${scores['dateTime']}):`; 
+
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = '🗑️';
+        deleteButton.addEventListener('click', function() {
+            savedScores.splice(index, 1);
+            localStorage.setItem('savedScores', JSON.stringify(savedScores));
+            displaySavedScores();
+        });
+        scoresDiv.appendChild(deleteButton);
+
+        const editButton = document.createElement('button');
+        editButton.textContent = '✏️';
+        editButton.addEventListener('click', function() {
+            const newNote = prompt('Enter a new note:', scores['note']);
+            if (newNote !== null) {
+                scores['note'] = newNote;
+                localStorage.setItem('savedScores', JSON.stringify(savedScores));
+                displaySavedScores();
+            }
+        });
+        scoresDiv.appendChild(editButton);
+
+        for (const section in scores) {
+            if (section !== 'dateTime' && section !== 'note') {
+                const scoreP = document.createElement('p');
+                scoreP.textContent = `${section}: ${scores[section]}`;
+                scoreP.style.margin = '0'; // space is annoying
+                scoresDiv.appendChild(scoreP);
+            }
+        }
+        savedScoresDiv.appendChild(scoresDiv);
+    });
+}
+
+// load stuff
+document.addEventListener('DOMContentLoaded', function() {
+    const savedScoresJSON = localStorage.getItem('savedScores');
+    if (savedScoresJSON) {
+        savedScores = JSON.parse(savedScoresJSON);
+        displaySavedScores();
+    }
+});
