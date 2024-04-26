@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>UCAT Score Calculator</h1>
-    <table>
+    <h1 id="title">UCAT Score Calculator</h1>
+    <table id="centredTable">
         <thead>
             <tr>
                 <th>Section</th>
@@ -50,6 +50,9 @@
             </tr>
         </tfoot>
     </table>
+    <button id="saveButton">Save</button>
+    <input type="text" id="noteInput" placeholder="Add a note">
+    <div id="savedScores"></div>
     <script src="script.js"></script>
 </body>
 </html>
