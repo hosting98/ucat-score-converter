@@ -50,3 +50,7 @@ th {
 #savedScores button {
     margin-left: 10px;
 }
+
+#saveButton {
+    width: 175px; 
+}
